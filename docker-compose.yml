@@ -26,8 +26,8 @@ services:
       MYSQL_PASSWORD: secret
     volumes:
       # 永続化するときにマウントするdir
-      - db:/var/lib/mysql
+      - echo_db:/var/lib/mysql
       # 初回起動時にsqlを実行
       - ./docker/db:/docker-entrypoint-initdb.d 
 volumes:
-  db:
+  echo_db:

@@ -7,5 +7,3 @@ COPY . /go/src/app
 WORKDIR /go/src/app/server
 
 RUN go build
-
-CMD go run main.go
