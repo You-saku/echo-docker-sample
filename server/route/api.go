@@ -30,7 +30,7 @@ func Routing() {
 
 	// userのCRUD
 	api.POST("/user", controllers.CreateUser)
-	//api.GET("/users", controllers.GetUsers) // Todo: 全件取得ができない
+	api.GET("/users", controllers.GetUsers)
 	api.GET("/users/:id", controllers.GetUser)
 	api.PUT("/users/:id", controllers.UpdateUser)
 	api.DELETE("/users/:id", controllers.DeleteUser)

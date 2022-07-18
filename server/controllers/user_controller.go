@@ -28,11 +28,11 @@ func CreateUser(c echo.Context) error {
 	return c.JSON(http.StatusCreated, user)
 }
 
-// Todo: 全件取得ができない
-// func GetUsers(c echo.Context) error {
-// 	users := models.GetAllUsers()
-// 	return c.JSON(http.StatusOK, users)
-// }
+func GetUsers(c echo.Context) error {
+	users := models.GetAllUsers()
+
+	return c.JSON(http.StatusOK, users)
+}
 
 func GetUser(c echo.Context) error {
 	i, _ := strconv.Atoi(c.Param("id"))

@@ -17,12 +17,13 @@ type User struct {
 	Todos   []Todo // これでhasmany
 }
 
-// Todo: 全件取得ができない
-// func GetAllUsers() (tx *gorm.DB) {
-// 	users := []User{}
-// 	db := Connect()
-// 	return db.Find(&users)
-// }
+// これ良いのか？
+func GetAllUsers() []User {
+	var users []User
+	db := Connect()
+	db.Find(&users)
+	return users
+}
 
 // 構造体にメソッドを持たせる書き方
 func (u *User) Create() (tx *gorm.DB) {
