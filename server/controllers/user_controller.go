@@ -13,16 +13,8 @@ import (
 )
 
 func CreateUser(c echo.Context) error {
-	name := c.FormValue("name")
-	email := c.FormValue("email")
-	a, _ := strconv.Atoi(c.FormValue("age"))
-	age := uint(a)
-
-	user := models.User{
-		Name: name,
-		Email: email,
-		Age: age,
-	}
+	user := new(models.User)
+	c.Bind(user) // これ最強
 	user.Create()
 
 	return c.JSON(http.StatusCreated, user)
@@ -46,17 +38,9 @@ func GetUser(c echo.Context) error {
 func UpdateUser(c echo.Context) error {
 	i, _ := strconv.Atoi(c.Param("id"))
 	id := uint(i)
-	name := c.FormValue("name")
-	email := c.FormValue("email")
-	a, _ := strconv.Atoi(c.FormValue("age"))
-	age := uint(a)
 
-	user := models.User{
-		ID: id,
-		Name: name,
-		Email: email,
-		Age: age,
-	}
+	user := new(models.User)
+	c.Bind(user)
 	user.Update(id)
 
 	return c.JSON(http.StatusOK, user)

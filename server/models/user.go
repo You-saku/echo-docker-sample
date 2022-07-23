@@ -9,7 +9,7 @@ import (
 // 構造体名は単数で => db上では複数形になる
 // カラム名は頭文字が大文字じゃないといけない(ハマるポイント)
 type User struct {
-	ID uint
+	ID uint `param:"id"`
 	Name  string `form:"name" json:"name" validate:"required"`
 	Email string `form:"email" json:"email" validate:"required",email`
 	Age uint `form:"age" json:"age" validate:"int"`
