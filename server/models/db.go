@@ -9,6 +9,9 @@ import (
 
 )
 
+// Todo:
+// DBとの接続方法
+// 現状Connect()を多用しているので1回1回接続してる気がする...
 
 // DBとの接続を行いgormを使用できるようにする
 func Connect() (db *gorm.DB){
@@ -33,7 +36,7 @@ func Migrate() {
 	db.AutoMigrate(&User{}, &Todo{})
 }
 
-// Todo: 後で消す(存在価値が薄れているため)
+// DB挿入のサンプル関数
 func AddRecord() {
 	db := Connect()
 	db.Create(&User{Name: "capybara", Email: "sample@example.com", Age: 20})

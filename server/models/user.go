@@ -12,7 +12,7 @@ type User struct {
 	ID uint `param:"id"`
 	Name  string `form:"name" json:"name" validate:"required"`
 	Email string `form:"email" json:"email" validate:"required",email`
-	Age uint `form:"age" json:"age" validate:"int"`
+	Age uint `form:"age" json:"age" validate:"gte=0,lte=100"`
 	gorm.Model // これを入れるとcreated_atとかupdated_atを自動でなんとかしてくれる。しかし、論理削除になる
 	Todos   []Todo // これでhasmany
 }
