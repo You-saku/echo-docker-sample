@@ -9,10 +9,10 @@ import (
 // 構造体名は単数で => db上では複数形になる
 // カラム名は頭文字が大文字じゃないといけない(ハマるポイント)
 type User struct {
-	ID uint
-	Name  string `form:"name" json:"name"`
-	Email string `form:"email" json:"email"`
-	Age uint `form:"age" json:"age"`
+	ID uint `param:"id"`
+	Name  string `form:"name" json:"name" validate:"required"`
+	Email string `form:"email" json:"email" validate:"required",email`
+	Age uint `form:"age" json:"age" validate:"gte=0,lte=100"`
 	gorm.Model // これを入れるとcreated_atとかupdated_atを自動でなんとかしてくれる。しかし、論理削除になる
 	Todos   []Todo // これでhasmany
 }

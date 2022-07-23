@@ -5,7 +5,10 @@ import (
 	"net/http"
 	"github.com/labstack/echo/v4"
 
-	"app/server/controllers" // controllerを読み込む
+	// controllerを読み込む
+	"app/server/controllers"
+	// バリデーション
+	"app/server/validates"
 )
 
 func Routing() {
@@ -22,6 +25,8 @@ func Routing() {
 
 	e.GET("/sample", sample)
 
+	// バリデーションを設定
+	e.Validator = validates.SetValidator()
 	// prefixつきrouting
 	api := e.Group("/api")
 	api.GET("/ok", func(c echo.Context) error {
