@@ -3,7 +3,9 @@ package route
 import (
 	// echo
 	"net/http"
-	"github.com/labstack/echo/v4"	
+	"github.com/labstack/echo/v4"
+
+	"app/server/controllers" // controllerを読み込む
 )
 
 func Routing() {
@@ -19,6 +21,19 @@ func Routing() {
 	})
 
 	e.GET("/sample", sample)
+
+	// prefixつきrouting
+	api := e.Group("/api")
+	api.GET("/ok", func(c echo.Context) error {
+		return c.String(http.StatusOK, "api")
+	})
+
+	// userのCRUD
+	api.POST("/user", controllers.CreateUser)
+	api.GET("/users", controllers.GetUsers)
+	api.GET("/users/:id", controllers.GetUser)
+	api.PUT("/users/:id", controllers.UpdateUser)
+	api.DELETE("/users/:id", controllers.DeleteUser)
 
 	e.Logger.Fatal(e.Start(":80"))
 }
