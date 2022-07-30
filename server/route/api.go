@@ -9,6 +9,10 @@ import (
 	"app/server/controllers"
 	// バリデーション
 	"app/server/validates"
+
+	// ミドルウェア
+	"github.com/labstack/echo/v4/middleware"
+	"app/server/token"
 )
 
 func Routing() {
@@ -27,8 +31,20 @@ func Routing() {
 
 	// バリデーションを設定
 	e.Validator = validates.SetValidator()
+
+	// ログイン(jwtを返す)
+	e.POST("/login", controllers.Login)
+
 	// prefixつきrouting
 	api := e.Group("/api")
+
+	// 認証を求めるエンドポイントに設定
+	config := middleware.JWTConfig{
+		Claims:     &token.JwtCustomClaims{},
+		SigningKey: []byte(token.Key),
+	}
+	api.Use(middleware.JWTWithConfig(config))
+
 	api.GET("/ok", func(c echo.Context) error {
 		return c.String(http.StatusOK, "api")
 	})
