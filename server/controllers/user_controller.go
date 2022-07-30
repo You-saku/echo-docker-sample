@@ -17,7 +17,7 @@ func CreateUser(c echo.Context) (err error) {
 	user := new(models.User)
 
 	c.Bind(user) // これ最強
-	if err = c.Validate(user); err != nil {
+	if err := c.Validate(user); err != nil {
 		return err
 	}
 
@@ -47,7 +47,7 @@ func UpdateUser(c echo.Context) error {
 	user := new(models.User)
 
 	c.Bind(user)
-	if err = c.Validate(user); err != nil {
+	if err := c.Validate(user); err != nil {
 		return err
 	}
 
