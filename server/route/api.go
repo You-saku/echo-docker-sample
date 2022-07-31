@@ -32,29 +32,32 @@ func Routing() {
 	// バリデーションを設定
 	e.Validator = validates.SetValidator()
 
-	// ログイン(jwtを返す)
-	e.POST("/login", controllers.Login)
-
 	// prefixつきrouting
 	api := e.Group("/api")
-
-	// 認証を求めるエンドポイントに設定
-	config := middleware.JWTConfig{
-		Claims:     &token.JwtCustomClaims{},
-		SigningKey: []byte(token.Key),
-	}
-	api.Use(middleware.JWTWithConfig(config))
-
 	api.GET("/ok", func(c echo.Context) error {
 		return c.String(http.StatusOK, "api")
 	})
 
+	// ログイン(jwtを返す)
+	api.POST("/login", controllers.Login)
+
+	// ログインしてたら叩けるエンドポイントを作る
+	login := api
+
+	// 認証設定
+	config := middleware.JWTConfig{
+		Claims:     &token.JwtCustomClaims{},
+		SigningKey: []byte(token.Key),
+	}
+	// メモ
+	// このJWTWithConfigを使うと間違ったJWTなら401, Authorization headerがなければ400になる
+	login.Use(middleware.JWTWithConfig(config))
 	// userのCRUD
-	api.POST("/user", controllers.CreateUser)
-	api.GET("/users", controllers.GetUsers)
-	api.GET("/users/:id", controllers.GetUser)
-	api.PUT("/users/:id", controllers.UpdateUser)
-	api.DELETE("/users/:id", controllers.DeleteUser)
+	login.POST("/user", controllers.CreateUser)
+	login.GET("/users", controllers.GetUsers)
+	login.GET("/users/:id", controllers.GetUser)
+	login.PUT("/users/:id", controllers.UpdateUser)
+	login.DELETE("/users/:id", controllers.DeleteUser)
 
 	e.Logger.Fatal(e.Start(":80"))
 }

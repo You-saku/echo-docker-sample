@@ -47,8 +47,7 @@ func (u *User) Delete(id uint) (tx *gorm.DB) {
 	return db.Where("id = ?", id).Delete(&u) // 論理削除になった
 }
 
-// Todo: DBに存在するユーザーのみをログインさせる
-// func (u *User) Verify(email string, password string) (tx *gorm.DB) {
-// 	db := Connect()
-// 	return db.Where("email = ? AND password = ?", email, password).First(&u)
-// }
+func (u *User) Verify(email string, password string) (tx *gorm.DB) {
+	db := Connect()
+	return db.Where("email = ? AND password = ?", email, password).First(&u)
+}
