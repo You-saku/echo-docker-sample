@@ -2,20 +2,23 @@
 
 ## setup
 ```
-git clone git@github.com:You-saku/echo-docker.git
-cd echo-docker
-cp server/.env.example server/.env
-docker-compose up -d --build
-
-docker-compose exec echo sh
-go run main.go
+1. git clone git@github.com:You-saku/2. echo-docker.git
+3. cd echo-docker
+4. cp server/.env.example server/.env
+5. make setup
+6. check RUNNING db container.
+7. docker-compose exec echo go run setup.go
+8. make start
+9. open http://localhost:80 (another terminal)
 ```
 
 ## Official Doc
 https://echo.labstack.com/
 
 ## Todo
-* imple Auth 
+ -  [ ] RDB model
+ -  [ ] Add Auth
+ -  [ ] Add Test code
 
 ## 個人メモ
 
