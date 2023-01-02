@@ -1,5 +1,7 @@
 # echo-docker
 
+This repository is Test app. I practice golang.
+
 ## setup
 ```
 1. git clone git@github.com:You-saku/2. echo-docker.git
