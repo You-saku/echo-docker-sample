@@ -40,7 +40,7 @@ func Routing() {
 	})
 
 	// userのCRUD
-	api.POST("/user", controllers.CreateUser)
+	api.POST("/users", controllers.CreateUser)
 	api.GET("/users", controllers.GetUsers)
 	api.GET("/users/:id", controllers.GetUser)
 	api.PUT("/users/:id", controllers.UpdateUser)
