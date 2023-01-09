@@ -15,8 +15,9 @@ This repository is Test app. I practice golang.
 4. cp server/.env.example server/.env
 5. make setup
 6. check RUNNING db container.
-7. make start
-8. open http://localhost:80 (another terminal)
+7. migrate -database "mysql://user:secret@tcp(127.0.0.1:3306)/develop?multiStatements=true" -path=database/migrations up 2
+8. make start
+9. open http://localhost:80 (another terminal)
 ```
 
 ## Official Doc
