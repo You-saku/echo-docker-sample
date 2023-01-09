@@ -9,9 +9,8 @@ This repository is Test app. I practice golang.
 4. cp server/.env.example server/.env
 5. make setup
 6. check RUNNING db container.
-7. docker-compose exec echo go run setup.go
-8. make start
-9. open http://localhost:80 (another terminal)
+7. make start
+8. open http://localhost:80 (another terminal)
 ```
 
 ## Official Doc
@@ -19,6 +18,7 @@ https://echo.labstack.com/
 
 ## Todo
  -  [ ] RDB model
+ -  [ ] migration management
  -  [ ] Add Auth
  -  [ ] Add Test code
 
