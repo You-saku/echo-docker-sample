@@ -1,7 +1,7 @@
 version: "3.7"
 
 services:
-  echo:
+  echo: # golangのwebサーバー
     build:
       context: . # Dockerfileで親ディレクトリを参照するときに使うらしいぞ
       dockerfile: ./docker/go/Dockerfile
@@ -13,7 +13,7 @@ services:
     tty: true # コンテナ常時起動(これがないと実行してコンテナが落ちる?) コンテナ作って実行できるようにするにはなきゃダメ??
     depends_on:
       - db
-  db:
+  db: # mysql8
     container_name: db
     image: mysql:8.0
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
