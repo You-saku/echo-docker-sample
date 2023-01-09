@@ -2,6 +2,12 @@
 
 This repository is Test app. I practice golang.
 
+## requirement
+ * git install
+ * docker install
+ * [golang-migrate(v4.15.2)](https://github.com/golang-migrate/migrate) install
+
+
 ## setup
 ```
 1. git clone git@github.com:You-saku/2. echo-docker.git
@@ -17,8 +23,6 @@ This repository is Test app. I practice golang.
 https://echo.labstack.com/
 
 ## Todo
- -  [ ] RDB model
- -  [ ] migration management
  -  [ ] Add Auth
  -  [ ] Add Test code
 
@@ -35,6 +39,7 @@ https://echo.labstack.com/
  * [ファイル分割したときに参考になる](https://qiita.com/fetaro/items/31b02b940ce9ec579baf#%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%83%A2%E3%83%BC%E3%83%89%E3%81%A7%E3%81%AE%E5%86%85%E9%83%A8%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AEimport)
 
 ### gorm
+ * [公式Doc](https://gorm.io/ja_JP/docs/)
  * リレーション
     * [1対多](https://gorm.io/ja_JP/docs/has_many.html) 
 
@@ -46,3 +51,10 @@ https://echo.labstack.com/
    
  * やってみたい
    * https://codehex.hateblo.jp/entry/echo-context
+
+### migration(golang-migrate)
+ * 詳しくは[公式Docへ](https://github.com/golang-migrate/migrate)
+ * makeコマンドでmigrationファイル作成
+```例)
+make migration name=users // 複数形にすること
+```
