@@ -9,9 +9,9 @@ ps:
 break:
 	docker-compose down -v
 start:
-	docker-compose exec echo go run main.go
+	docker-compose exec go go run main.go
 go:
-	docker-compose exec echo sh
+	docker-compose exec go sh
 db:
 	docker-compose exec db mysql --user=user --password=secret
 create-migration: # nameを複数形にすること
