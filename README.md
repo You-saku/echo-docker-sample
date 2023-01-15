@@ -60,7 +60,7 @@ https://echo.labstack.com/
 make migration name=users // 複数形にすること
 ```
 
-### テスト実行
+### テスト
 #### コマンド
   * go test　　　 　　：テスト実行
   * go test -v　　　　：テスト実行（詳細な実行結果出力）
