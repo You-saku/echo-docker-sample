@@ -1,0 +1,33 @@
+version: "3.7"
+
+services:
+  go: # golangのwebサーバー
+    build:
+      context: . # Dockerfileで親ディレクトリを参照するときに使うらしいぞ
+      dockerfile: ./docker/go/Dockerfile
+    container_name: go
+    ports:
+      - "80:80"
+    volumes:
+      - .:/go/src/app
+    tty: true # コンテナ常時起動(これがないと実行してコンテナが落ちる?) コンテナ作って実行できるようにするにはなきゃダメ??
+    depends_on:
+      - db
+  db: # mysql8
+    container_name: db
+    image: mysql:5.7
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: develop
+      MYSQL_USER: user
+      MYSQL_PASSWORD: secret
+    volumes:
+      # 永続化するためにvolume使う
+      - echo_db:/var/lib/mysql
+      # 初回起動時にsqlを実行
+      - ./docker/db:/docker-entrypoint-initdb.d
+volumes:
+  echo_db:
