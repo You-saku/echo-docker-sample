@@ -24,8 +24,8 @@ This repository is Test app. I practice golang.
 https://echo.labstack.com/
 
 ## Todo
- -  [ ] Add Auth
- -  [ ] Add Test code
+ - Add Auth
+ - CI/CD
 
 ## 個人メモ
 
@@ -58,4 +58,16 @@ https://echo.labstack.com/
  * makeコマンドでmigrationファイル作成
 ```例)
 make migration name=users // 複数形にすること
+```
+
+### テスト
+#### コマンド
+  * go test　　　 　　：テスト実行
+  * go test -v　　　　：テスト実行（詳細な実行結果出力）
+  * go test -cover　　：テスト実行＋コードカバレッジ
+  * go test -cover -v ：テスト実行＋コードカバレッジ（詳細な実行結果出力）
+
+このリポジトリではディレクトリ構成の関係でコマンドは以下の通り
+```
+docker-compose exec go go test ./test
 ```

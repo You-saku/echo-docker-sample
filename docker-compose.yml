@@ -1,11 +1,11 @@
 version: "3.7"
 
 services:
-  echo: # golangのwebサーバー
+  go: # golangのwebサーバー
     build:
       context: . # Dockerfileで親ディレクトリを参照するときに使うらしいぞ
       dockerfile: ./docker/go/Dockerfile
-    container_name: echo
+    container_name: go
     ports:
       - "80:80"
     volumes:
