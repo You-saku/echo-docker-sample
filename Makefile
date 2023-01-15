@@ -16,3 +16,5 @@ db:
 	docker-compose exec db mysql --user=user --password=secret
 create-migration: # nameを複数形にすること
 	migrate create -ext sql -dir database/migrations -seq create_$(name)_table
+test:
+	docker-compose exec go go test ./test -v
