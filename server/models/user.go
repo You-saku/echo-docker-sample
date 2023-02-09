@@ -9,12 +9,12 @@ import (
 // 構造体名は単数で => db上では複数形になる
 // カラム名は頭文字が大文字じゃないといけない(ハマるポイント)
 type User struct {
-	ID uint `param:"id"`
+	ID int `param:"id"`
 	Name  string `form:"name" json:"name" validate:"required"`
 	Email string `form:"email" json:"email" validate:"required",email`
-	Age uint `form:"age" json:"age" validate:"gte=0,lte=100"`
+	Age int `form:"age" json:"age" validate:"gte=0,lte=100"`
 	gorm.Model // これを入れるとcreated_atとかupdated_atを自動でなんとかしてくれる。しかし、論理削除になる
-	Todos   []Todo // これでhasmany
+	Todos   []Todo `gorm:"foreignkey:UserID"` // これでhasmany
 }
 
 // これ良いのか？
@@ -33,7 +33,8 @@ func (u *User) Create() (tx *gorm.DB) {
 
 func (u *User) Show(id uint) (tx *gorm.DB) {
 	db := Connect()
-	return db.Where("id = ?", id).First(&u)
+	// リレーション先を取得する
+	return db.Where("id = ?", id).First(&u).Preload("Todos").Find(u)
 }
 
 func (u *User) Update(id uint) (tx *gorm.DB) {

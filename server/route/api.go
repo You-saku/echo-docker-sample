@@ -5,6 +5,9 @@ import (
 	"net/http"
 	"github.com/labstack/echo/v4"
 
+	// ミドルウェア導入
+	"github.com/labstack/echo/v4/middleware"
+
 	// controllerを読み込む
 	"app/server/controllers"
 	// バリデーション
@@ -13,16 +16,19 @@ import (
 
 func Routing() {
 	e := echo.New()
+	// CORS設定
+	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+		AllowOrigins: []string{"http://localhost:3001"},
+	}))
+
 	e.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello, Echo!")
 	})
-
 	e.POST("/", func(c echo.Context) error {
 		name := c.FormValue("name")
 		email := c.FormValue("email")
 		return c.String(http.StatusOK, "name:" + name + ", email:" + email)
 	})
-
 	e.GET("/sample", sample)
 
 	// バリデーションを設定
@@ -34,7 +40,7 @@ func Routing() {
 	})
 
 	// userのCRUD
-	api.POST("/user", controllers.CreateUser)
+	api.POST("/users", controllers.CreateUser)
 	api.GET("/users", controllers.GetUsers)
 	api.GET("/users/:id", controllers.GetUser)
 	api.PUT("/users/:id", controllers.UpdateUser)
