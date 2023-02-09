@@ -14,18 +14,15 @@ This repository is Test app. I practice golang.
 3. cd echo-docker
 4. cp server/.env.example server/.env
 5. make setup
-6. check RUNNING db container.
-7. migrate -database "mysql://user:secret@tcp(127.0.0.1:3306)/develop?multiStatements=true" -path=database/migrations up 2
-8. make start
-9. open http://localhost:80 (another terminal)
+6. make start
+7. open http://localhost:80 (another terminal)
 ```
 
 ## Official Doc
-https://echo.labstack.com/
+ * [echo](https://echo.labstack.com/)
 
 ## Todo
- - Add Auth
- - CI/CD
+ - いろんなアーキテクチャに挑戦
 
 ## 個人メモ
 
@@ -55,7 +52,7 @@ https://echo.labstack.com/
 
 ### migration(golang-migrate)
  * 詳しくは[公式Docへ](https://github.com/golang-migrate/migrate)
- * makeコマンドでmigrationファイル作成
+ * makeコマンドでmigrationファイル作成(新規テーブル作成時に使えます)
 ```例)
 make migration name=users // 複数形にすること
 ```
