@@ -154,7 +154,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:80/api/user",
+					"raw": "http://localhost:80/api/users",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -162,7 +162,7 @@
 					"port": "80",
 					"path": [
 						"api",
-						"user"
+						"users"
 					],
 					"query": [
 						{
@@ -250,25 +250,19 @@
 		},
 		{
 			"name": "user取得",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true,
-				"disabledSystemHeaders": {
-					"content-type": true
-				}
-			},
 			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "default"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
 				},
+				"method": "GET",
+				"header": [],
 				"url": {
 					"raw": "http://localhost:80/api/users/1",
 					"protocol": "http",
@@ -280,23 +274,6 @@
 						"api",
 						"users",
 						"1"
-					],
-					"query": [
-						{
-							"key": "name",
-							"value": "you-saku",
-							"disabled": true
-						},
-						{
-							"key": "email",
-							"value": "yousaku@example.com",
-							"disabled": true
-						},
-						{
-							"key": "age",
-							"value": "23",
-							"disabled": true
-						}
 					]
 				}
 			},
@@ -380,7 +357,7 @@
 					"raw": "{\r\n    \"name\": \"you-saku\",\r\n    \"email\": \"sample@mail.com\",\r\n    \"age\": 3\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:80/api/users/4",
+					"raw": "http://localhost:80/api/users/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -389,7 +366,7 @@
 					"path": [
 						"api",
 						"users",
-						"4"
+						"1"
 					],
 					"query": [
 						{

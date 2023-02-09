@@ -10,23 +10,26 @@ import (
 	// バリデーション
 	"app/server/validates"
 
-	// ミドルウェア
+	// ミドルウェア導入
 	"github.com/labstack/echo/v4/middleware"
 	"app/server/token"
 )
 
 func Routing() {
 	e := echo.New()
+	// CORS設定
+	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+		AllowOrigins: []string{"http://localhost:3001"},
+	}))
+
 	e.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello, Echo!")
 	})
-
 	e.POST("/", func(c echo.Context) error {
 		name := c.FormValue("name")
 		email := c.FormValue("email")
 		return c.String(http.StatusOK, "name:" + name + ", email:" + email)
 	})
-
 	e.GET("/sample", sample)
 
 	// バリデーションを設定
@@ -52,8 +55,9 @@ func Routing() {
 	// メモ
 	// このJWTWithConfigを使うと間違ったJWTなら401, Authorization headerがなければ400になる
 	login.Use(middleware.JWTWithConfig(config))
+
 	// userのCRUD
-	login.POST("/user", controllers.CreateUser)
+	login.POST("/users", controllers.CreateUser)
 	login.GET("/users", controllers.GetUsers)
 	login.GET("/users/:id", controllers.GetUser)
 	login.PUT("/users/:id", controllers.UpdateUser)
