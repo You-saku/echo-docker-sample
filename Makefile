@@ -6,7 +6,7 @@ down:
 	docker-compose down
 ps:
 	docker-compose ps
-break:
+destroy:
 	docker-compose down -v
 start:
 	docker-compose exec go go run main.go

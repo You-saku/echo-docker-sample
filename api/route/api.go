@@ -9,9 +9,9 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 
 	// controllerを読み込む
-	"app/server/controllers"
+	"app/api/controllers"
 	// バリデーション
-	"app/server/validates"
+	"app/api/validates"
 )
 
 func Routing() {

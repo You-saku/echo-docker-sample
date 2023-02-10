@@ -10,7 +10,7 @@ import (
 	"strconv"
 
 	// モデルを定義してる自作パッケージ
-	"app/server/models"
+	"app/api/models"
 )
 
 func CreateUser(c echo.Context) (err error) {
