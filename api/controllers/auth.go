@@ -5,9 +5,9 @@ import (
 	"github.com/labstack/echo/v4"
 
 	// モデルを定義してる自作パッケージ
-	"app/server/models"
+	"app/api/models"
 	// jwt周り
-	"app/server/token"
+	"app/api/token"
 )
 
 func Login(c echo.Context) (err error) {

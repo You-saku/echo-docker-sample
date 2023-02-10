@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "0df9a9bb-d167-489a-b0d4-a7051cf87ea9",
-		"name": "echo-docker",
+		"_postman_id": "2e4d152f-a906-428d-827f-13287395c7f2",
+		"name": "echo-docker-jwt",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -130,6 +130,16 @@
 				"disabledSystemHeaders": {}
 			},
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbXBsZUBleGFtcGxlLmNvbSIsInBhc3N3b3JkIjoicGFzc3dvcmQiLCJleHAiOjE2NzYzMDA1MTV9.-TVe9X_TwVmYxDtt1rDsZFGw73EXRpNkEQPjjxhB4qc",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [
 					{
@@ -146,7 +156,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"you-saku0723_4\",\r\n    \"email\": \"sample3@example.com\",\r\n    \"age\": 20\r\n}",
+					"raw": "{\r\n    \"name\": \"you-saku0723_4\",\r\n    \"email\": \"sample3@example.com\",\r\n    \"password\": \"password\",\r\n    \"age\": 20\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

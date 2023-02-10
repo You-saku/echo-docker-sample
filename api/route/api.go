@@ -6,13 +6,13 @@ import (
 	"github.com/labstack/echo/v4"
 
 	// controllerを読み込む
-	"app/server/controllers"
+	"app/api/controllers"
 	// バリデーション
-	"app/server/validates"
+	"app/api/validates"
 
 	// ミドルウェア導入
 	"github.com/labstack/echo/v4/middleware"
-	"app/server/token"
+	"app/api/token"
 )
 
 func Routing() {
