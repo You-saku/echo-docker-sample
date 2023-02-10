@@ -3,9 +3,9 @@ package main
 import (
 	// 自作packageのimport
 	// go.modにあるmodule名+パス(ハマったポイント)
-	"app/server/env" // .envファイルを読み込む
-	//"app/server/models" // モデルを読み込む
-	"app/server/route" // ルーティングの定義
+	"app/api/env" // .envファイルを読み込む
+	//"app/api/models" // モデルを読み込む
+	"app/api/route" // ルーティングの定義
 )
 
 func main() {

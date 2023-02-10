@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "0df9a9bb-d167-489a-b0d4-a7051cf87ea9",
-		"name": "echo-docker",
+		"_postman_id": "2e4d152f-a906-428d-827f-13287395c7f2",
+		"name": "echo-docker-jwt",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -146,7 +146,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"you-saku0723_4\",\r\n    \"email\": \"sample3@example.com\",\r\n    \"age\": 20\r\n}",
+					"raw": "{\r\n    \"name\": \"you-saku0723_4\",\r\n    \"email\": \"sample3@example.com\",\r\n    \"password\": \"password\",\r\n    \"age\": 20\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -194,16 +194,6 @@
 				}
 			},
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [
 					{
@@ -251,16 +241,6 @@
 		{
 			"name": "user取得",
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -296,7 +276,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"capybara0723\",\r\n    \"email\": \"sample@example.com\",\r\n    \"age\": 23\r\n}",
+					"raw": "{\r\n    \"name\": \"capybara0723\",\r\n    \"email\": \"sample@example.com\",\r\n    \"password\": \"password2\",\r\n    \"age\": 23\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -357,7 +337,7 @@
 					"raw": "{\r\n    \"name\": \"you-saku\",\r\n    \"email\": \"sample@mail.com\",\r\n    \"age\": 3\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:80/api/users/1",
+					"raw": "http://localhost:80/api/users/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -366,7 +346,7 @@
 					"path": [
 						"api",
 						"users",
-						"1"
+						"2"
 					],
 					"query": [
 						{

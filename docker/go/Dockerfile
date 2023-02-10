@@ -7,6 +7,6 @@ RUN apk add --no-cache gcc libc-dev
 COPY . /go/src/app
 
 # ワーキングディレクトリの設定
-WORKDIR /go/src/app/server
+WORKDIR /go/src/app/api
 
 RUN go build

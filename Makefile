@@ -1,6 +1,8 @@
 setup:
 	docker-compose up -d --build
+	sleep 10
 	migrate -database "mysql://user:secret@tcp(127.0.0.1:3306)/develop?multiStatements=true" -path=database/migrations up 3
+	sleep 5
 	docker-compose exec -T db mysql --user=user --password=secret develop < database/dev/setup.sql
 up:
 	docker-compose up -d
