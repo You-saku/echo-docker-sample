@@ -1,4 +1,4 @@
-module app/server
+module app/api
 
 go 1.17
 
