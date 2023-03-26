@@ -13,7 +13,7 @@ services:
     tty: true # コンテナ常時起動(これがないと実行してコンテナが落ちる?) コンテナ作って実行できるようにするにはなきゃダメ??
     depends_on:
       - db
-  db: # mysql8
+  db: # mysql5.7
     container_name: db
     image: mysql:5.7
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
@@ -29,5 +29,14 @@ services:
       - echo_db:/var/lib/mysql
       # 初回起動時にsqlを実行
       - ./docker/db:/docker-entrypoint-initdb.d
+  swagger-ui: # swagger-ui
+    image: swaggerapi/swagger-ui
+    container_name: "swagger-ui"
+    ports:
+      - "8000:8080"
+    volumes:
+      - ./swagger/openapi.yaml:/openapi.yaml
+    environment:
+      SWAGGER_JSON: /openapi.yaml
 volumes:
   echo_db:

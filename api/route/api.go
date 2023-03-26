@@ -19,7 +19,8 @@ func Routing() {
 	e := echo.New()
 	// CORS設定
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
-		AllowOrigins: []string{"http://localhost:3001"},
+		// Reactのフロント側, swagger-uiの2つを許可
+		AllowOrigins: []string{"http://localhost:3001", "http://localhost:8000"},
 	}))
 
 	e.GET("/", func(c echo.Context) error {
