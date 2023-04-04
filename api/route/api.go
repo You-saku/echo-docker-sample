@@ -27,13 +27,9 @@ func Routing() {
 		AllowOrigins: []string{"http://localhost:3001", "http://localhost:8000"},
 	}))
 
+	// サンプルのルーティング
 	e.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello, Echo!")
-	})
-	e.POST("/", func(c echo.Context) error {
-		name := c.FormValue("name")
-		email := c.FormValue("email")
-		return c.String(http.StatusOK, "name:" + name + ", email:" + email)
 	})
 	e.GET("/sample", sample)
 

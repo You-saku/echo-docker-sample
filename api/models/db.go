@@ -15,7 +15,6 @@ import (
 var db *gorm.DB
 var err error
 
-
 // DBとの接続を行いgormを使用できるようにする
 func Init() {
 	user := os.Getenv("DB_USERNAME")
@@ -30,4 +29,3 @@ func Init() {
 		panic("failed to connect database")
 	}
 }
-
