@@ -9,35 +9,25 @@ import (
 
 )
 
-// Todo:
-// DBとの接続方法
-// 現状Connect()を多用しているので1回1回接続してる気がする...
+// 外部で使う場合は「:=」で変数宣言してはいけない
+// https://go-tour-jp.appspot.com/basics/10
+// > なお、関数の外では、キーワードではじまる宣言( var, func, など)が必要で、 := での暗黙的な宣言は利用できません。 
+var db *gorm.DB
+var err error
+
 
 // DBとの接続を行いgormを使用できるようにする
-func Connect() (db *gorm.DB){
+func Init() {
 	user := os.Getenv("DB_USERNAME")
     pass := os.Getenv("DB_PASSWORD")
     protocol := "tcp(db:3306)" // 文法 => tcp(コンテナ名:ポート番号) ハマるポイント
     dbName := os.Getenv("DB_NAME")
 
-	connect := user + ":" + pass + "@" + protocol + "/" + dbName + "?charset=utf8mb4&parseTime=True&loc=Local"
-	db, err := gorm.Open(mysql.Open(connect), &gorm.Config{})
+	dsn := user + ":" + pass + "@" + protocol + "/" + dbName + "?charset=utf8mb4&parseTime=True&loc=Local"
+	db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
 	if err != nil {
 		panic("failed to connect database")
 	}
-
-	return
 }
 
-// Todo: マイグレーションはgorm以外でやりたい
-func Migrate() {
-	db := Connect()
-	db.AutoMigrate(&User{}, &Todo{})
-}
-
-// DB挿入のサンプル関数
-func AddRecord() {
-	db := Connect()
-	db.Create(&User{Name: "capybara", Email: "sample@example.com", Age: 20})
-}

@@ -5,6 +5,8 @@ import (
 	"net/http"
 	"github.com/labstack/echo/v4"
 
+	// modelを読み込む
+	"app/api/models"
 	// controllerを読み込む
 	"app/api/controllers"
 	// バリデーション
@@ -16,7 +18,9 @@ import (
 )
 
 func Routing() {
-	e := echo.New()
+	e := echo.New() // echoのインスタンスを作成
+	models.Init() // DBとの接続を行う
+
 	// CORS設定
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
 		// Reactのフロント側, swagger-uiの2つを許可
