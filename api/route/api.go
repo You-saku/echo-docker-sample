@@ -5,6 +5,8 @@ import (
 	"net/http"
 	"github.com/labstack/echo/v4"
 
+	// modelを読み込む
+	"app/api/models"
 	// controllerを読み込む
 	"app/api/controllers"
 	// バリデーション
@@ -16,20 +18,18 @@ import (
 )
 
 func Routing() {
-	e := echo.New()
+	e := echo.New() // echoのインスタンスを作成
+	models.Init() // DBとの接続を行う
+
 	// CORS設定
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
 		// Reactのフロント側, swagger-uiの2つを許可
 		AllowOrigins: []string{"http://localhost:3001", "http://localhost:8000"},
 	}))
 
+	// サンプルのルーティング
 	e.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello, Echo!")
-	})
-	e.POST("/", func(c echo.Context) error {
-		name := c.FormValue("name")
-		email := c.FormValue("email")
-		return c.String(http.StatusOK, "name:" + name + ", email:" + email)
 	})
 	e.GET("/sample", sample)
 

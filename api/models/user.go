@@ -18,37 +18,30 @@ type User struct {
 	Todos   []Todo `gorm:"foreignkey:UserID"` // これでhasmany
 }
 
-// これ良いのか？
 func GetAllUsers() []User {
 	var users []User
-	db := Connect()
 	db.Find(&users)
 	return users
 }
 
 // 構造体にメソッドを持たせる書き方
 func (u *User) Create() (tx *gorm.DB) {
-	db := Connect()
 	return db.Create(&u)
 }
 
 func (u *User) Show(id uint) (tx *gorm.DB) {
-	db := Connect()
 	// リレーション先を取得する
 	return db.Where("id = ?", id).First(&u).Preload("Todos").Find(u)
 }
 
 func (u *User) Update(id uint) (tx *gorm.DB) {
-	db := Connect()
 	return db.Where("id = ?", id).Updates(&u)
 }
 
 func (u *User) Delete(id uint) (tx *gorm.DB) {
-	db := Connect()
 	return db.Where("id = ?", id).Delete(&u) // 論理削除になった
 }
 
 func (u *User) Verify(email string, password string) (tx *gorm.DB) {
-	db := Connect()
 	return db.Where("email = ? AND password = ?", email, password).First(&u)
 }
