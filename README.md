@@ -11,8 +11,8 @@ This repository is Test app. I practice golang.
 ## setup
 ```
 1. git clone git@github.com:You-saku/echo-docker-sample.git
-3. cd echo-docker
-4. cp server/.env.example server/.env
+3. cd echo-docker-sample
+4. cp api/.env.example api/.env
 5. make setup
 6. make start
 7. open http://localhost:80 (another terminal)

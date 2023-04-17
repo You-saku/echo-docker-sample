@@ -18,7 +18,7 @@ type User struct {
 	Todos   []Todo `gorm:"foreignkey:UserID"` // これでhasmany
 }
 
-func GetAllUsers() []User {
+func All() []User {
 	var users []User
 	db.Find(&users)
 	return users
